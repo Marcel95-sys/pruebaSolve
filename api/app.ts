@@ -4,7 +4,7 @@ import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import Container from 'typedi';
 import { ENV_CONFIG } from '../app/config';
-//import { Logger } from '../libs/logs/logger';
+import { Logger } from '../libs/logs/logger';
 import { useExpressServer, useContainer as routingContainer } from 'routing-controllers';
 import * as http from 'http';
 
@@ -26,10 +26,10 @@ expressApp.use(bodyParser.json());
 
 const server = http.createServer(expressApp);
 server.listen(ENV_CONFIG.app.port, () => {
-  //Logger.info('Server', 'Application running on', `${ENV_CONFIG.app.hostname}:${ENV_CONFIG.app.port}`);
+  Logger.info('Server', 'Application running on', `${ENV_CONFIG.app.hostname}:${ENV_CONFIG.app.port}`);
 });
 
 // Handling the unHandledRejection errors
 process.on('unhandledRejection', (error, promise) => {
-  //Logger.error('Server', 'unhandledRejectionError :', `${error}`);
+  Logger.error('Server', 'unhandledRejectionError :', `${error}`);
 });

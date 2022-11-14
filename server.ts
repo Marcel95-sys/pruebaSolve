@@ -2,6 +2,7 @@
 import express from 'express';
 
 const app = express();
+const host = "http://localhost:";
 const PORT:Number=3000;
 
 // Handling GET / Request

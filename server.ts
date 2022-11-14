@@ -2,9 +2,11 @@
 import express from 'express';
 
 const app = express();
-const host = "http://localhost:";
 const PORT:Number=3000;
 
+app.post('/', (req, res) => {
+	
+})
 // Handling GET / Request
 app.get('/', (req, res) => {
 	res.send('Welcome to typescript backend!');

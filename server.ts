@@ -10,11 +10,10 @@ const db = new Database('db.dataBase');
 
 // Handling GET / Request
 app.get('/', (req, res) => {
-	db.get('SELECT ALL() % 100 as result', (_, res) => console.log(res)
-	);	
+	db.get('SELECT ALL() % 100 as result', (_, res) => console.log(res));	
 })
 
-app.post('/:nick/ :email/ :passw/ :nump', (req, res) => {
+app.post('/:nick/:email/:passw/:nump', (req, _) => {
 	db.exec('SELECT nick FROM users INSERT ' + req.params.nick);	
 	db.exec('SELECT email FROM users INSERT ' + req.params.email);
 	db.exec('SELECT password FROM users INSERT ' + req.params.passw);
@@ -22,11 +21,11 @@ app.post('/:nick/ :email/ :passw/ :nump', (req, res) => {
 })
 
 app.delete('/:id', (req, res) => {
-	
+	db.exec('DELETE FROM users WHERE ' + req.params.id + '=?')
 })
 
 app.put('/', (req, res) => {
-	
+	//db.exec('UPDATE users SET ')
 })
 
 // Server setup

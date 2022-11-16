@@ -11,9 +11,7 @@ const sqlite3_1 = require("sqlite3");
 const app = (0, express_1.default)();
 const PORT = 3000;
 const db = new sqlite3_1.Database('base_datos.db');
-const bodyparser = require('body-parser');
 app.use(cors_1.default);
-app.use(bodyparser.json);
 // Handling GET / Request
 app.get('/', (_, res) => {
     res.json(db.get('SELECT * FROM users'));
@@ -22,7 +20,7 @@ app.post('/', (_, res) => {
     db.exec("INSERT INTO users (nick, email, passw, numphone) VALUES ('"
         + body_parser_1.json.arguments.nick + "','" + body_parser_1.json.arguments.email + "','"
         + body_parser_1.json.arguments.passw + "','" + body_parser_1.json.arguments.numphone + "');");
-    res.send("Se ha creado el usuario " + body_parser_1.json.arguments.nick);
+    res.json("Se ha creado el usuario " + body_parser_1.json.arguments.nick);
 });
 app.delete('/:id', (req) => {
     db.exec('DELETE FROM users WHERE id = ' + req.params.id);

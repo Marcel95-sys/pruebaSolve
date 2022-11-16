@@ -8,10 +8,8 @@ const app = express();
 const PORT:Number=3000;
 
 const db = new Database('base_datos.db');
-const bodyparser = require('body-parser');
 
 app.use(cors);
-app.use(bodyparser.json);
 
 // Handling GET / Request
 app.get('/', (_,res) => {

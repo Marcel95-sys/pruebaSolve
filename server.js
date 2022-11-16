@@ -11,11 +11,12 @@ const sqlite3_1 = require("sqlite3");
 const app = (0, express_1.default)();
 const PORT = 3000;
 const db = new sqlite3_1.Database('base_datos.db');
+const bodyparser = require('body-parser');
 app.use(cors_1.default);
-app.use(express_1.default.json);
+app.use(bodyparser.json);
 // Handling GET / Request
 app.get('/', (_, res) => {
-    res.send(db.get('SELECT * FROM users'));
+    res.json(db.get('SELECT * FROM users'));
 });
 app.post('/', (_, res) => {
     db.exec("INSERT INTO users (nick, email, passw, numphone) VALUES ('"

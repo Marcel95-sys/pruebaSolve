@@ -8,13 +8,14 @@ const app = express();
 const PORT:Number=3000;
 
 const db = new Database('base_datos.db');
+const bodyparser = require('body-parser');
 
 app.use(cors);
-app.use(express.json);
+app.use(bodyparser.json);
 
 // Handling GET / Request
 app.get('/', (_,res) => {
-	res.send(db.get('SELECT * FROM users'));	
+	res.json(db.get('SELECT * FROM users'));	
 })
 
 app.post('/', (_, res) => {
@@ -22,7 +23,7 @@ app.post('/', (_, res) => {
 		 + json.arguments.nick + "','" + json.arguments.email + "','" 
 		 +  json.arguments.passw + "','" + json.arguments.numphone + "');");
 
-	res.send("Se ha creado el usuario " + json.arguments.nick);
+	res.json("Se ha creado el usuario " + json.arguments.nick);
 })
 
 app.delete('/:id', (req) => {

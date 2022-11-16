@@ -14,7 +14,7 @@ app.use(express.json);
 
 // Handling GET / Request
 app.get('/', (_,res) => {
-	res.send(db.get('SELECT * FROM main users'));	
+	res.send(db.get('SELECT * FROM users'));	
 })
 
 app.post('/', (_, res) => {

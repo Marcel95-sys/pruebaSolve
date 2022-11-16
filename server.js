@@ -14,7 +14,7 @@ const db = new sqlite3_1.Database('base_datos.db');
 app.use(cors_1.default);
 app.use(express_1.default.json);
 // Handling GET / Request
-app.get('/', (_, res) => {
+app.get('/' + PORT, (req, res) => {
     res.send(db.get('SELECT * FROM users'));
 });
 app.post('/', (_, res) => {
@@ -43,6 +43,5 @@ app.put('/:option', (req, res) => {
 });
 // Server setup
 app.listen(PORT, () => {
-    console.log('The application is listening '
-        + 'on port http://localhost:' + PORT);
+    console.log('The application is listening ' + 'on port http://localhost:' + PORT);
 });

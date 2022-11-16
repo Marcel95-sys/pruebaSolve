@@ -1,13 +1,17 @@
 // Importing module
 import { json } from 'body-parser';
 import express from 'express';
+import cors from 'cors';
 import { Database } from 'sqlite3';
 
 const app = express();
 const PORT:Number=3000;
+const host = 'http://localhost:';
 
 const db = new Database('base_datos.db');
 
+app.use(cors);
+app.use(express.json);
 
 // Handling GET / Request
 app.get('', (_,res) => {

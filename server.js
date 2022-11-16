@@ -6,10 +6,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // Importing module
 const body_parser_1 = require("body-parser");
 const express_1 = __importDefault(require("express"));
+const cors_1 = __importDefault(require("cors"));
 const sqlite3_1 = require("sqlite3");
 const app = (0, express_1.default)();
 const PORT = 3000;
+const host = 'http://localhost:';
 const db = new sqlite3_1.Database('base_datos.db');
+app.use(cors_1.default);
+app.use(express_1.default.json);
 // Handling GET / Request
 app.get('', (_, res) => {
     res.send(db.get('SELECT * FROM users'));

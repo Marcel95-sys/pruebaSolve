@@ -6,7 +6,6 @@ import { Database } from 'sqlite3';
 
 const app = express();
 const PORT:Number=3000;
-const host = 'http://localhost:';
 
 const db = new Database('base_datos.db');
 
@@ -14,11 +13,11 @@ app.use(cors);
 app.use(express.json);
 
 // Handling GET / Request
-app.get('', (_,res) => {
-	res.send(db.get('SELECT * FROM users'));	
+app.get('/', (_,res) => {
+	res.send(db.get('SELECT * FROM main users'));	
 })
 
-app.post('', (_, res) => {
+app.post('/', (_, res) => {
 	db.exec("INSERT INTO users (nick, email, passw, numphone) VALUES ('"
 		 + json.arguments.nick + "','" + json.arguments.email + "','" 
 		 +  json.arguments.passw + "','" + json.arguments.numphone + "');");
@@ -48,6 +47,5 @@ app.put('/:option', (req, res) => {
 
 // Server setup
 app.listen(PORT,() => {
-	console.log('The application is listening '
-		+ 'on port http://localhost:'+PORT);
+	console.log('The application is listening ' + 'on port http://localhost:'+PORT);
 })

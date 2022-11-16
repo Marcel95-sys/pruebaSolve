@@ -10,15 +10,14 @@ const cors_1 = __importDefault(require("cors"));
 const sqlite3_1 = require("sqlite3");
 const app = (0, express_1.default)();
 const PORT = 3000;
-const host = 'http://localhost:';
 const db = new sqlite3_1.Database('base_datos.db');
 app.use(cors_1.default);
 app.use(express_1.default.json);
 // Handling GET / Request
-app.get('', (_, res) => {
+app.get('/', (_, res) => {
     res.send(db.get('SELECT * FROM users'));
 });
-app.post('', (_, res) => {
+app.post('/', (_, res) => {
     db.exec("INSERT INTO users (nick, email, passw, numphone) VALUES ('"
         + body_parser_1.json.arguments.nick + "','" + body_parser_1.json.arguments.email + "','"
         + body_parser_1.json.arguments.passw + "','" + body_parser_1.json.arguments.numphone + "');");

@@ -14,7 +14,7 @@ const db = new sqlite3_1.Database('base_datos.db');
 app.use(cors_1.default);
 app.use(express_1.default.json);
 // Handling GET / Request
-app.get('/' + PORT, (req, res) => {
+app.get('/', (_, res) => {
     res.send(db.get('SELECT * FROM users'));
 });
 app.post('/', (_, res) => {

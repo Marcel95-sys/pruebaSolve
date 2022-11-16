@@ -19,7 +19,7 @@ app.post('', (_, res) => {
 		 + json.arguments.nick + "','" + json.arguments.email + "','" 
 		 +  json.arguments.passw + "','" + json.arguments.numphone + "');");
 
-	res.send("Se ha creado el usuario " + json.arguments.nickname);
+	res.send("Se ha creado el usuario " + json.arguments.nick);
 })
 
 app.delete('/:id', (req) => {
@@ -27,8 +27,19 @@ app.delete('/:id', (req) => {
 	return;
 })
 
-app.put('', (req, res) => {
-	//db.exec('UPDATE users SET ')
+app.put('/:option', (req, res) => {
+	if(req.params.option == "nick"){
+		db.exec('UPDATE users SET nick = "' + json.arguments.nick + '"');
+	}
+	else if(req.params.option == "email"){
+		db.exec('UPDATE users SET email = "' + json.arguments.email + '"');
+	}
+	else if(req.params.option == "passw"){
+		db.exec('UPDATE users SET passw = "' + json.arguments.passw + '"');
+	}
+	else if(req.params.option == "num"){
+		db.exec('UPDATE users SET email = "' + json.arguments.email + '"');
+	}	
 })
 
 // Server setup
